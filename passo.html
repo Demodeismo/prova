@@ -2,11 +2,11 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
-  <title>Fotocamera Posteriore Automatica</title>
+  <title>Fotocamera Posteriore a Schermo Pieno</title>
 
   <!-- A-Frame -->
   <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
-  <!-- MindAR Core (serve solo per aprire fotocamera posteriore) -->
+  <!-- MindAR Core -->
   <script src="https://unpkg.com/mind-ar@1.2.5/dist/mindar-image.prod.js"></script>
   <script src="https://unpkg.com/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
 
@@ -19,6 +19,11 @@
       overflow: hidden;
       background: black;
     }
+    a-scene {
+      width: 100vw;
+      height: 100vh;
+      display: block;
+    }
   </style>
 </head>
 <body>
@@ -27,7 +32,6 @@
     device-orientation-permission-ui="enabled: true"
     embedded
   >
-    <!-- Camera posteriore automatica -->
     <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
   </a-scene>
 </body>
