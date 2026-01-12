@@ -1,20 +1,25 @@
-<!DOCTYPE html>
+l<!DOCTYPE html>
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <title>Accesso Fotocamera</title>
+  <title>Fotocamera Posteriore</title>
 </head>
 <body>
   <video id="video" width="100%" autoplay playsinline></video>
+  <button id="start">Avvia Fotocamera Posteriore</button>
+
   <script>
-    // Forza fotocamera posteriore (environment)
-    navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
-      .then(stream => {
-        const video = document.getElementById('video');
-        video.srcObject = stream;
-        video.play();
-      })
-      .catch(err => alert("Permesso fotocamera negato: " + err));
+    const startBtn = document.getElementById('start');
+    const video = document.getElementById('video');
+
+    startBtn.addEventListener('click', () => {
+      navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: "environment" } } })
+        .then(stream => {
+          video.srcObject = stream;
+          video.play();
+        })
+        .catch(err => alert("Errore fotocamera: " + err));
+    });
   </script>
 </body>
 </html>
