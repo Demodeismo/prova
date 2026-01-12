@@ -2,11 +2,11 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
-  <title>Fotocamera Posteriore Automatica</title>
+  <title>AR Immersiva con MindAR</title>
 
   <!-- A-Frame -->
   <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
-  <!-- MindAR Core (serve solo per avviare la fotocamera posteriore) -->
+  <!-- MindAR Core -->
   <script src="https://unpkg.com/mind-ar@1.2.5/dist/mindar-image.prod.js"></script>
   <script src="https://unpkg.com/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
 
@@ -28,12 +28,28 @@
 </head>
 <body>
   <a-scene
+    mindar-image="imageTargetSrc: targets.mind;"  <!-- Qui va il tuo file .mind -->
     vr-mode-ui="enabled: false"
     device-orientation-permission-ui="enabled: true"
-    embedded
   >
-    <!-- Fotocamera posteriore che parte automaticamente -->
+    <!-- Camera immersiva posteriore -->
     <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+    <!-- Qui puoi aggiungere oggetti AR -->
+    <!-- Esempio: immagine sospesa -->
+    <a-assets>
+      <img id="quadro" src="quadro.jpg" />
+    </a-assets>
+
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane
+        src="#quadro"
+        position="0 0 0"
+        width="0.5"
+        height="0.7"
+        rotation="0 0 0"
+      ></a-plane>
+    </a-entity>
   </a-scene>
 </body>
 </html>
