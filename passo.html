@@ -1,55 +1,42 @@
+Html
 <!DOCTYPE html>
 <html lang="it">
-<head>
-  <meta charset="UTF-8" />
-  <title>AR Immersiva con MindAR</title>
-
-  <!-- A-Frame -->
-  <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
-  <!-- MindAR Core -->
-  <script src="https://unpkg.com/mind-ar@1.2.5/dist/mindar-image.prod.js"></script>
-  <script src="https://unpkg.com/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
-
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      background: black;
-    }
-    a-scene {
-      width: 100vw;
-      height: 100vh;
-      display: block;
-    }
-  </style>
-</head>
-<body>
-  <a-scene
-    mindar-image="imageTargetSrc: targets.mind;"  <!-- Qui va il tuo file .mind -->
-    vr-mode-ui="enabled: false"
-    device-orientation-permission-ui="enabled: true"
-  >
-    <!-- Camera immersiva posteriore -->
-    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
-
-    <!-- Qui puoi aggiungere oggetti AR -->
-    <!-- Esempio: immagine sospesa -->
-    <a-assets>
-      <img id="quadro" src="quadro.jpg" />
-    </a-assets>
-
-    <a-entity mindar-image-target="targetIndex: 0">
-      <a-plane
-        src="#quadro"
-        position="0 0 0"
-        width="0.5"
-        height="0.7"
-        rotation="0 0 0"
-      ></a-plane>
-    </a-entity>
-  </a-scene>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>MindAR Quadro</title>
+    <script src="https://unpkg.com/mind-ar@1.2.5/dist/mindar-image.prod.js"></script>
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+    <script src="https://unpkg.com/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <a-scene
+      mindar-image="imageTargetSrc: targets.mind;"
+      vr-mode-ui="enabled: false"
+      device-orientation-permission-ui="enabled: true"
+      embedded
+    >
+      <a-assets>
+        <img id="quadro" src="quadro.jpg" />
+      </a-assets>
+      <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+      <a-entity mindar-image-target="targetIndex: 0">
+        <a-plane
+          src="#quadro"
+          position="0 0 0"
+          height="0.7"
+          width="0.5"
+          rotation="0 0 0"
+        ></a-plane>
+      </a-entity>
+    </a-scene>
+  </body>
 </html>
