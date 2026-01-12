@@ -5,12 +5,14 @@
   <title>Accesso Fotocamera</title>
 </head>
 <body>
-  <video id="video" width="100%" autoplay></video>
+  <video id="video" width="100%" autoplay playsinline></video>
   <script>
-    // Richiesta permesso fotocamera
-    navigator.mediaDevices.getUserMedia({ video: true })
+    // Richiede permesso fotocamera e forza fotocamera posteriore
+    navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
       .then(stream => {
-        document.getElementById('video').srcObject = stream;
+        const video = document.getElementById('video');
+        video.srcObject = stream;
+        video.play();
       })
       .catch(err => alert("Permesso fotocamera negato: " + err));
   </script>
