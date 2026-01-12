@@ -1,25 +1,38 @@
-l<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <title>Fotocamera Posteriore</title>
+  <meta charset="UTF-8" />
+  <title>Fotocamera Posteriore Automatica</title>
+  <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: black;
+    }
+    video { width: 100%; height: 100%; object-fit: cover; }
+  </style>
 </head>
 <body>
-  <video id="video" width="100%" autoplay playsinline></video>
-  <button id="start">Avvia Fotocamera Posteriore</button>
+  <a-scene embedded vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: true">
+    <a-assets></a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
-  <script>
-    const startBtn = document.getElementById('start');
-    const video = document.getElementById('video');
+    <video id="video" autoplay playsinline></video>
 
-    startBtn.addEventListener('click', () => {
-      navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: "environment" } } })
+    <script>
+      // Fotocamera posteriore automaticamente, simile a MindAR
+      navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
         .then(stream => {
+          const video = document.getElementById('video');
           video.srcObject = stream;
           video.play();
         })
         .catch(err => alert("Errore fotocamera: " + err));
-    });
-  </script>
+    </script>
+  </a-scene>
 </body>
 </html>
